@@ -1,27 +1,23 @@
 package ColaDePrioridad;
 
 public class Nodo {
-    public int dat;
-    public int nPrio;
-    public Nodo siguiente;
+     Nodo siguiente;
+     Doctor nombreDoctor;
+     Citas citas;
+     int nPrio;
 
-    public Nodo(int dat, int nPrio) {
-        this.dat = dat;
+    public Nodo() {
+    }
+
+    public Nodo(Doctor nombreDoctor,int nPrio, Citas citas) {
+        this.nombreDoctor = nombreDoctor;
         this.nPrio = nPrio;
+        this.citas = citas;
         this.siguiente = null;
-    }
-
-    public Nodo(int nPrio) {
-        this.nPrio = nPrio;
-    }
-
-    public void setnPrio(int nPrio) {
-        this.nPrio = nPrio;
     }
 
     @Override
     public String toString() {
-        return "Nodo{" +
-                "dat: " + dat + ", numPrio: " + nPrio + "}";
+        return "Nombre Doctor" + nombreDoctor + "Citas" + citas;
     }
 }

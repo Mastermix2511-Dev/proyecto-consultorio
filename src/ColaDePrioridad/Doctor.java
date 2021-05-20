@@ -17,7 +17,6 @@ public class Doctor {
 
     @Override
     public String toString() {
-        return "Doctor{" +
-                "nombre='" + nombre;
+        return "Doctor{" + "nombre: '" + nombre +"}" ;
     }
 }
