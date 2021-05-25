@@ -38,10 +38,14 @@ public class Doctor {
 
     @Override
     public String toString() {
+<<<<<<< HEAD
         return "Doctor{" +
                 "nombreDoctor='" + nombreDoctor + '\'' +
                 ", claveDoctor=" + claveDoctor +
                 ", nodo=" + nodo +
                 '}';
+=======
+        return "Doctor{" + "nombre: '" + nombre +"}" ;
+>>>>>>> origin/master
     }
 }

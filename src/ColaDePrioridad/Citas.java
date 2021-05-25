@@ -1,13 +1,34 @@
 package ColaDePrioridad;
 
 
+<<<<<<< HEAD:src/ColaDePrioridad/Consultorio.java
 public class Consultorio {
     Nodo cabeza = null;
     Nodo cola = null;
     Doctor doctor;
 
+=======
+public class Citas {
+    Nodo cabeza = null;
+    Nodo cola = null;
+    String nombrePaciente;
+    int numPrioridad;
+    String hora;
+    Doctor doctor;
 
-    public Consultorio() {
+    public Citas() {
+    }
+>>>>>>> origin/master:src/ColaDePrioridad/Citas.java
+
+    public Citas(Doctor doctor) {
+        this.doctor = doctor;
+    }
+
+    public Citas(String nombrePaciente, int numPrioridad, String hora, Doctor doctor) {
+        this.nombrePaciente = nombrePaciente;
+        this.numPrioridad = numPrioridad;
+        this.doctor = doctor;
+        this.hora = hora;
     }
 
     public Consultorio(Doctor doctor) {
@@ -22,18 +43,41 @@ public class Consultorio {
         }
     }
 
+    public void insertar(String nombrePaciente, int numPrioridad, String hora) {
+        Nodo nuevoNodo = new Nodo();
+        if (estaVacia()) {
+            cabeza = nuevoNodo;
+            cola = nuevoNodo;
+        } else if (cabeza.nPrio > numPrioridad) {
+            nuevoNodo.siguiente = cabeza;
+            cabeza = nuevoNodo;
+        } else {
+            Nodo aux = null;
+            Nodo route = cabeza;
+            while (route != null && route.nPrio <= numPrioridad) {
+                aux = route;
+                route = route.siguiente;
+            }
+            nuevoNodo.siguiente = route;
+            aux.siguiente = nuevoNodo;
+            if (route == null) {
+                cola = nuevoNodo;
+            }
+        }
+    }
 
-    public void eliminarNodo(int nPrim) {
+
+    public void eliminarNodo(int numPrioridad) {
         if (estaVacia()) {
             System.out.println("Esta lista esta vacia");
-        } else if (cabeza == cola && cabeza.nPrio == nPrim) {
+        } else if (cabeza == cola && cabeza.nPrio == numPrioridad) {
             cabeza = cola = null;
-        } else if (cabeza.nPrio == nPrim) {
+        } else if (cabeza.nPrio == numPrioridad) {
             cabeza = cabeza.siguiente;
         } else {
             Nodo anterior = cabeza;
             Nodo temp = cabeza.siguiente;
-            while (temp != null && temp.nPrio != nPrim) {
+            while (temp != null && temp.nPrio != numPrioridad) {
                 anterior = anterior.siguiente;
                 temp = temp.siguiente;
             }
@@ -46,6 +90,7 @@ public class Consultorio {
         }
     }
 
+<<<<<<< HEAD:src/ColaDePrioridad/Consultorio.java
     public void insertar(Cita cita, int nPrm) {// hora
         Nodo nuevoNodo = new Nodo(cita, nPrm);
         if (estaVacia()) {
@@ -68,6 +113,8 @@ public class Consultorio {
             }
         }
     }
+=======
+>>>>>>> origin/master:src/ColaDePrioridad/Citas.java
 
     /*public void reasignarNodo(int dat, int nNprim, int nuevoNPrim) {
         Nodo nuevoNodo = new Nodo(dat, nuevoNPrim);
@@ -113,6 +160,15 @@ public class Consultorio {
 
      */
 
+    @Override
+    public String toString() {
+        return "Citas{" +
+                "nombrePaciente='" + nombrePaciente + '\'' +
+                ", numPrioridad=" + numPrioridad +
+                ", hora='" + hora + '\'' +
+                ", doctor=" + doctor +
+                '}';
+    }
 
     public void imprimir() {
         Nodo route = cabeza;
