@@ -1,28 +1,27 @@
 package main;
 
+import ColaDePrioridad.Cita;
 import ColaDePrioridad.Consultorio;
 import ColaDePrioridad.Doctor;
 
 import java.util.Scanner;
 
 public class Principal {
-    public static Scanner sc = new Scanner(System.in);
-    public static Consultorio cola = new Consultorio();
-    public static Doctor doctores[] = new Doctor[10];
-    public static int opc;
+    public static Scanner strings = new Scanner(System.in);
+    public static Scanner numeros = new Scanner(System.in);
+    public static Consultorio consultorios[] = new Consultorio[10];
+    public static int opc, opc2;
 
     public static void main(String[] args) {
 
         do {
             menu();
-            opc = sc.nextInt();
+            opc = numeros.nextInt();
 
             switch (opc) {
-                case 1 -> insertarNodo();
-                case 2 -> eliminarNodo();
-                case 3 -> reasinarNPrimNodo();
-                case 4 -> imprimir();
-                case 5 -> agregarMedicos();
+                case 1 -> insertarCita();
+                case 2 -> imprimir();
+                case 3 -> agregarMedicos();
                 case 0 -> System.out.println("Hasta la proxima...");
                 default -> System.out.println("Digita una de las opciones anteriores...");
             }
@@ -32,22 +31,34 @@ public class Principal {
     public static void menu() {
         System.out.println();
         System.out.println("Luis Felipe Martinez Ruiz");
-        System.out.println("1.- Agregar nodo a la lista:----------------------");
-        System.out.println("2.- Eliminar nodo a la lista:---------------------");
-        System.out.println("3.- Cambiar prioridad del nodo--------------------");
-        System.out.println("4.- Imprimir: ---------------- -------------------");
-        System.out.println("5.- Agregar Medicos");
+        System.out.println("1.- Agregar Cita:----------------------");
+        System.out.println("2.- Imprimir: ---------------- -------------------");
+        System.out.println("3.- Agregar Medicos");
         System.out.println("0.- Salir del programa: --------------------------");
         System.out.println();
     }
 
-    public static void insertarNodo() {
-        System.out.println("Digita el dato a agregar: ");
-        int dato = sc.nextInt();
-        System.out.println("Digita la prioridad del dato: ");
-        int numPrio = sc.nextInt();
-        cola.insertar(dato, numPrio);
+    public static void insertarCita() {
+        System.out.println("Digita la clave del doctor");
+        int claveDoctor = numeros.nextInt();
+
+        for (int i = 0; i < consultorios.length; i++) {
+            if (consultorios[i].getDoctor().getClaveDoctor() == claveDoctor) {
+                System.out.println("Elejiste al doctor: " + consultorios[i].getDoctor().getNombreDoctor());
+                System.out.println("Agrega una cita ");
+                System.out.println("Digita el nombre del paciente");
+                String nombrePaciente = strings.next();
+                System.out.println("Digita le fecha de la cita");
+                String fecha = strings.next();
+                System.out.println("Digita la hora de la cita");
+                int hora = numeros.nextInt();
+                consultorios[i].insertar(new Cita(nombrePaciente, fecha), hora);
+                break;
+            }
+        }
     }
+
+    /*
 
     public static void eliminarNodo() {
         System.out.println("Digita la prioridad del a eliminar: ");
@@ -55,6 +66,9 @@ public class Principal {
         cola.eliminarNodo(numPrio);
     }
 
+     */
+
+    /*
     public static void reasinarNPrimNodo() {
         cola.imprimir();
         System.out.println("Digita el dato de lista a reasignar: ");
@@ -66,21 +80,28 @@ public class Principal {
         // cola.reasignarNodo(dato, numPrio, nuevoNumPrio);
     }
 
-    public static void agregarMedicos() {
-        int size = doctores.length;
-        for (int i = 0; i < size; i++) {
-            System.out.println("Digita el nombre del medico:");
-            String nombre = sc.next();
-            doctores[i] = new Doctor(nombre);
-        }
 
+     */
+    public static void agregarMedicos() {
+        consultorios[0] = new Consultorio(new Doctor("Luis", 25));
+        consultorios[1] = new Consultorio(new Doctor("Fer", 11));
+        consultorios[2] = new Consultorio(new Doctor("Jose", 28));
+        consultorios[3] = new Consultorio(new Doctor("Raul", 32));
+        consultorios[4] = new Consultorio(new Doctor("Raul", 32));
+        consultorios[5] = new Consultorio(new Doctor("Raul", 32));
+        consultorios[6] = new Consultorio(new Doctor("Raul", 32));
+        consultorios[7] = new Consultorio(new Doctor("Raul", 32));
+        consultorios[8] = new Consultorio(new Doctor("Raul", 32));
+        consultorios[9] = new Consultorio(new Doctor("Raul", 32));
 
     }
 
     public static void imprimir() {
-        cola.imprimir();
-        for (int i = 0; i < doctores.length; i++) {
-            System.out.println(doctores[i].toString());
+
+        for (int i = 0; i < consultorios.length; i++) {
+            System.out.println(consultorios[i].getDoctor());
+            consultorios[i].imprimir();
+            System.out.println("-----------");
         }
     }
 }

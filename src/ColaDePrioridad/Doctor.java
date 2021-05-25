@@ -1,23 +1,47 @@
 package ColaDePrioridad;
 
 public class Doctor {
-    private String nombre;
+    private String nombreDoctor;
+    private int claveDoctor;
+    Nodo nodo;
 
-    public Doctor(String nombre){
-        this.nombre = nombre;
-    }
-    public String getNombre() {
-        return nombre;
+
+    public Nodo getNodo() {
+        return nodo;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    public void setNodo(Nodo nodo) {
+        this.nodo = nodo;
+    }
+
+    public Doctor(String nombreDoctor, int claveDoctor) {
+        this.nombreDoctor = nombreDoctor;
+        this.claveDoctor = claveDoctor;
+    }
+
+    public int getClaveDoctor() {
+        return claveDoctor;
+    }
+
+    public void setClaveDoctor(int claveDoctor) {
+        this.claveDoctor = claveDoctor;
+    }
+
+    public String getNombreDoctor() {
+        return nombreDoctor;
+    }
+
+    public void setNombreDoctor(String nombreDoctor) {
+        this.nombreDoctor = nombreDoctor;
     }
 
 
     @Override
     public String toString() {
         return "Doctor{" +
-                "nombre='" + nombre;
+                "nombreDoctor='" + nombreDoctor + '\'' +
+                ", claveDoctor=" + claveDoctor +
+                ", nodo=" + nodo +
+                '}';
     }
 }

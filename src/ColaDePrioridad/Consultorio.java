@@ -1,10 +1,17 @@
 package ColaDePrioridad;
 
+
 public class Consultorio {
     Nodo cabeza = null;
     Nodo cola = null;
+    Doctor doctor;
+
 
     public Consultorio() {
+    }
+
+    public Consultorio(Doctor doctor) {
+        this.doctor = doctor;
     }
 
     public boolean estaVacia() {
@@ -39,8 +46,8 @@ public class Consultorio {
         }
     }
 
-    public void insertar(int dat, int nPrm) {
-        Nodo nuevoNodo = new Nodo(dat, nPrm);
+    public void insertar(Cita cita, int nPrm) {// hora
+        Nodo nuevoNodo = new Nodo(cita, nPrm);
         if (estaVacia()) {
             cabeza = nuevoNodo;
             cola = nuevoNodo;
@@ -118,5 +125,13 @@ public class Consultorio {
             }
             System.out.println();
         }
+    }
+
+    public Doctor getDoctor() {
+        return doctor;
+    }
+
+    public void setDoctor(Doctor doctor) {
+        this.doctor = doctor;
     }
 }

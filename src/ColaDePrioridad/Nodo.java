@@ -1,12 +1,12 @@
 package ColaDePrioridad;
 
 public class Nodo {
-    public int dat;
-    public int nPrio;
+    public Cita cita;
+    public int nPrio;// hora
     public Nodo siguiente;
 
-    public Nodo(int dat, int nPrio) {
-        this.dat = dat;
+    public Nodo(Cita cita, int nPrio) {
+        this.cita = cita;
         this.nPrio = nPrio;
         this.siguiente = null;
     }
@@ -22,6 +22,6 @@ public class Nodo {
     @Override
     public String toString() {
         return "Nodo{" +
-                "dat: " + dat + ", numPrio: " + nPrio + "}";
+                "dat: " + cita + ", numPrio: " + nPrio + "}";
     }
 }
