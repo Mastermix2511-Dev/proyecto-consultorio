@@ -52,7 +52,7 @@ public class Principal {
                 String fecha = strings.next();
                 System.out.println("Digita la hora de la cita");
                 int hora = numeros.nextInt();
-                consultorios[i].insertar(new Cita(nombrePaciente, fecha), hora);
+                consultorios[i].insertarCita(new Cita(nombrePaciente, fecha), hora);
                 break;
             }
         }

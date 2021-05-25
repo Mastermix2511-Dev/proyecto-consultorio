@@ -3,11 +3,10 @@ package ColaDePrioridad;
 public class Cita {
     private String nombrePaciente;
     private String fecha;
-    // hora ya va en el nodo, nprim
+    // hora ya va en el nodo, es nprim
 
 
     public Cita() {
-
     }
 
     public Cita(String nombrePaciente, String fecha) {
