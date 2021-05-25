@@ -83,16 +83,16 @@ public class Principal {
 
      */
     public static void agregarMedicos() {
-        consultorios[0] = new Consultorio(new Doctor("Luis", 25));
-        consultorios[1] = new Consultorio(new Doctor("Fer", 11));
-        consultorios[2] = new Consultorio(new Doctor("Jose", 28));
-        consultorios[3] = new Consultorio(new Doctor("Raul", 32));
-        consultorios[4] = new Consultorio(new Doctor("Raul", 32));
-        consultorios[5] = new Consultorio(new Doctor("Raul", 32));
-        consultorios[6] = new Consultorio(new Doctor("Raul", 32));
-        consultorios[7] = new Consultorio(new Doctor("Raul", 32));
-        consultorios[8] = new Consultorio(new Doctor("Raul", 32));
-        consultorios[9] = new Consultorio(new Doctor("Raul", 32));
+        consultorios[0] = new Consultorio(new Doctor("Luis", 1));
+        consultorios[1] = new Consultorio(new Doctor("Fer", 2));
+        consultorios[2] = new Consultorio(new Doctor("Jose", 3));
+        consultorios[3] = new Consultorio(new Doctor("Raul", 4));
+        consultorios[4] = new Consultorio(new Doctor("Raul", 5));
+        consultorios[5] = new Consultorio(new Doctor("Raul", 6));
+        consultorios[6] = new Consultorio(new Doctor("Raul", 7));
+        consultorios[7] = new Consultorio(new Doctor("Raul", 8));
+        consultorios[8] = new Consultorio(new Doctor("Raul", 9));
+        consultorios[9] = new Consultorio(new Doctor("Raul", 10));
 
     }
 
