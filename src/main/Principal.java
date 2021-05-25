@@ -9,11 +9,11 @@ import java.util.Scanner;
 public class Principal {
     public static Scanner strings = new Scanner(System.in);
     public static Scanner numeros = new Scanner(System.in);
-    public static Consultorio consultorios[] = new Consultorio[10];
+    public static Consultorio consultorios[] = new Consultorio[4];
     public static int opc, opc2;
 
     public static void main(String[] args) {
-
+        agregarMedicos();
         do {
             menu();
             opc = numeros.nextInt();
@@ -21,7 +21,6 @@ public class Principal {
             switch (opc) {
                 case 1 -> insertarCita();
                 case 2 -> imprimir();
-                case 3 -> agregarMedicos();
                 case 0 -> System.out.println("Hasta la proxima...");
                 default -> System.out.println("Digita una de las opciones anteriores...");
             }
@@ -32,9 +31,8 @@ public class Principal {
         System.out.println();
         System.out.println("Luis Felipe Martinez Ruiz");
         System.out.println("1.- Agregar Cita:----------------------");
-        System.out.println("2.- Imprimir: ---------------- -------------------");
-        System.out.println("3.- Agregar Medicos");
-        System.out.println("0.- Salir del programa: --------------------------");
+        System.out.println("2.- Imprimir Doctores:-----------------");
+        System.out.println("0.- Salir del programa: ---------------");
         System.out.println();
     }
 
@@ -87,16 +85,19 @@ public class Principal {
         consultorios[1] = new Consultorio(new Doctor("Fernando", 2));
         consultorios[2] = new Consultorio(new Doctor("Jose", 3));
         consultorios[3] = new Consultorio(new Doctor("Diana", 4));
+        /*
         consultorios[4] = new Consultorio(new Doctor("Rafael", 5));
         consultorios[5] = new Consultorio(new Doctor("Rodrigo", 6));
         consultorios[6] = new Consultorio(new Doctor("Maximo", 7));
         consultorios[7] = new Consultorio(new Doctor("Abelardo", 8));
         consultorios[8] = new Consultorio(new Doctor("Martin", 9));
         consultorios[9] = new Consultorio(new Doctor("Raul", 10));
+
+         */
     }
 
     public static void imprimir() {
-
+        System.out.println("-----Doctores-----");
         for (int i = 0; i < consultorios.length; i++) {
             System.out.println(consultorios[i].getDoctor());
             consultorios[i].imprimir();

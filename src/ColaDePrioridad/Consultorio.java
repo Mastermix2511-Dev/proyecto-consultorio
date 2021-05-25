@@ -124,10 +124,10 @@ public class Consultorio {
     public void imprimir() {
         Nodo route = cabeza;
         if (route == null) {
-            System.out.println("\nEsta vacia la cola...");
+
         } else {
             while (route != null) {
-                System.out.print("- >" + route.toString());
+                System.out.println("->" + route.toString());
                 route = route.siguiente;
             }
             System.out.println();

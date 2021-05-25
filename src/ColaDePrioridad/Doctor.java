@@ -38,11 +38,7 @@ public class Doctor {
 
     @Override
     public String toString() {
-        return "Doctor{" +
-                "nombreDoctor='" + nombreDoctor + '\'' +
-                ", claveDoctor=" + claveDoctor +
-                ", nodo=" + nodo +
-                '}';
+        return "Doctor: '" + nombreDoctor + ", Clave Id Doctor: " + claveDoctor;
 
     }
 }

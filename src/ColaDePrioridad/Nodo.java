@@ -5,19 +5,18 @@ public class Nodo {
     public int nPrio;// hora
     public Nodo siguiente;
 
+
+    public Nodo() {
+    }
+
     public Nodo(Cita cita, int nPrio) {
         this.cita = cita;
         this.nPrio = nPrio;
         this.siguiente = null;
     }
 
-
-    public Nodo() {
-    }
-
     @Override
     public String toString() {
-        return "Nodo{" +
-                "dat: " + cita + ", numPrio: " + nPrio + "}";
+        return "Cita: " + cita + ", Horario: " + nPrio + "hrs";
     }
 }

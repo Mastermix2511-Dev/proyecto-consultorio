@@ -32,11 +32,7 @@ public class Cita {
 
     @Override
     public String toString() {
-        return "Cita{" +
-                "nombrePaciente='" + nombrePaciente + '\'' +
-                ", fecha='" + fecha + '\'' +
-                '}';
+        return "Paciente: '" + nombrePaciente + ", Fecha: '" + fecha;
     }
-
 
 }
