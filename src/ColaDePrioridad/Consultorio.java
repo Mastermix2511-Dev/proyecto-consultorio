@@ -6,10 +6,14 @@ public class Consultorio {
     Nodo cola = null;
     Doctor doctor;
 
+    public Consultorio() {
+    }
+
 
     public Consultorio(Doctor doctor) {
         this.doctor = doctor;
     }
+
 
     public Doctor getDoctor() {
         return doctor;

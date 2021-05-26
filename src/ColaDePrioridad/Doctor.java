@@ -3,20 +3,23 @@ package ColaDePrioridad;
 public class Doctor {
     private String nombreDoctor;
     private int claveDoctor;
-    Nodo nodo;
+    Dias dias[];
 
-
-    public Nodo getNodo() {
-        return nodo;
-    }
-
-    public void setNodo(Nodo nodo) {
-        this.nodo = nodo;
+    public Doctor() {
     }
 
     public Doctor(String nombreDoctor, int claveDoctor) {
         this.nombreDoctor = nombreDoctor;
         this.claveDoctor = claveDoctor;
+    }
+
+
+    public Dias[] getDias() {
+        return dias;
+    }
+
+    public void setDias(Dias[] dias) {
+        this.dias = dias;
     }
 
     public int getClaveDoctor() {
@@ -38,7 +41,7 @@ public class Doctor {
 
     @Override
     public String toString() {
-        return "Doctor: '" + nombreDoctor + ", Clave Id Doctor: " + claveDoctor;
+        return "Doctor: " + nombreDoctor + ", Clave Id Doctor: " + claveDoctor;
 
     }
 }

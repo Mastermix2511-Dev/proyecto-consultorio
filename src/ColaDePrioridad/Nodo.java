@@ -17,6 +17,8 @@ public class Nodo {
 
     @Override
     public String toString() {
-        return "Cita: " + cita + ", Horario: " + nPrio + "hrs";
+        return "Cita: " + cita + ", Horario: " + nPrio + ":00 hrs";
     }
+
+
 }
