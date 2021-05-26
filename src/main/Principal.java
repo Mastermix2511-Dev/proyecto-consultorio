@@ -5,13 +5,14 @@ import ColaDePrioridad.Consultorio;
 import ColaDePrioridad.Dias;
 import ColaDePrioridad.Doctor;
 
+import java.util.IllegalFormatCodePointException;
 import java.util.Scanner;
 
 public class Principal {
     public static Scanner strings = new Scanner(System.in);
     public static Scanner numeros = new Scanner(System.in);
     public static Consultorio consultorios[] = new Consultorio[4]; // Cambiar el tamaño a 10
-    public static Dias dias[] = new Dias[27];//Cambiar el tamaño a 27
+    public static Dias dias[] = new Dias[30];//Cambiar el tamaño a 27   ////////CAMBIÉ EL TAMAÑO A 30
     public static int opc, opc2;
 
     public static void main(String[] args) {
@@ -21,10 +22,18 @@ public class Principal {
             opc = numeros.nextInt();
 
             switch (opc) {
-                case 1 -> insertarCita();
-                case 2 -> imprimir();
-                case 0 -> System.out.println("Hasta la proxima...");
-                default -> System.out.println("Digita una de las opciones anteriores...");
+                case 1:
+                    insertarCita();
+                    break;
+                case 2:
+                    imprimir();
+                    break;
+                case 0:
+                    System.out.println("Hasta la proxima...");
+                    break;
+                default:
+                    System.out.println("Digita una de las opciones anteriores...");
+                    break;
             }
         } while (opc != 0);
     }
@@ -46,30 +55,22 @@ public class Principal {
             if (consultorios[i].getDoctor().getClaveDoctor() == claveDoctor) {// verficacion si existe el doctor
                 System.out.println("Elejiste al doctor: " + consultorios[i].getDoctor().getNombreDoctor());
 
-                System.out.println("Que dia desea su cita: ");
+                System.out.println("Ingrese la fecha de su cita con el formato correspondiente (dd/mm/yyyy): ");
+                System.out.println("Dia:");
                 int diaCita = numeros.nextInt();
+                System.out.println("Mes");
+                int mes = numeros.nextInt();
+                System.out.println("Año");
+                int anio = numeros.nextInt();
+                ValidaFecha(diaCita, mes);
 
                 if (diasMesJunio(diaCita) != 0) { //Se checa si ese dia es domingo
-
                     System.out.println("Digita el nombre del paciente");
                     String nombrePaciente = strings.next();
-                    System.out.println("Digita la hora de la cita");
-                    int hora = numeros.nextInt();
-                    // System.out.println("Digita el mes de la cita");
-                    // int mes = numeros.nextInt();
-                    consultorios[i].insertarCita(new Cita(nombrePaciente, 06, 2021, diasMesJunio(diaCita)), hora);
-
-                    /*if (mes == 6) {
-
-                    } else {
-                        System.out.println("Solo se permite consulta el mes de Junio(06)");
-                    }
-
-                     */
-
-
-                } else {
-                    System.out.println("Los dias domingos no laboran los doctores...");
+                    System.out.println("Digite la opción correspondiente a la hora que desee");
+                    horarios(i);
+                    int hora = (numeros.nextInt() - 1);
+                    consultorios[i].insertarCita(new Cita(nombrePaciente, (diasMesJunio(diaCita)), mes, anio), diaCita, hora);
                 }
                 break;
             } else {
@@ -79,30 +80,6 @@ public class Principal {
         }
     }
 
-    /*
-
-    public static void eliminarNodo() {
-        System.out.println("Digita la prioridad del a eliminar: ");
-        int numPrio = sc.nextInt();
-        cola.eliminarNodo(numPrio);
-    }
-
-     */
-
-    /*
-    public static void reasinarNPrimNodo() {
-        cola.imprimir();
-        System.out.println("Digita el dato de lista a reasignar: ");
-        int dato = sc.nextInt();
-        System.out.println("Digita la prioridad del dato de la lista a reasignar: ");
-        int numPrio = sc.nextInt();
-        System.out.println("Digita la nueva prioridad del dato: ");
-        int nuevoNumPrio = sc.nextInt();
-        // cola.reasignarNodo(dato, numPrio, nuevoNumPrio);
-    }
-
-
-     */
     public static void medicos() {
         consultorios[0] = new Consultorio(new Doctor("Luis", 1));
         consultorios[1] = new Consultorio(new Doctor("Fernando", 2));
@@ -115,8 +92,21 @@ public class Principal {
         consultorios[7] = new Consultorio(new Doctor("Abelardo", 8));
         consultorios[8] = new Consultorio(new Doctor("Martin", 9));
         consultorios[9] = new Consultorio(new Doctor("Raul", 10));
-
          */
+    }
+
+    public static void ValidaFecha(int d, int m) {
+        if (d > 0 && d <= 30) {
+            if (d == 6 || d == 13 || d == 20 || d == 27) {
+                System.out.println("Dia domingos no se agendan citas");
+            } else if (m == 06) {
+                System.out.println("Fecha valida");
+            } else {
+                System.out.println("Lo lamento, sólo agendamos citas del mes de Junio\n" + " .......Volverás al menú de inicio......");
+            }
+        } else {
+            System.out.println("Día no válido, volverás al menú de inicio");
+        }
     }
 
     public static void dias() {
@@ -151,118 +141,45 @@ public class Principal {
 
     public static int diasMesJunio(int dia) {
 
-        dias[0] = new Dias(1);
-        dias[1] = new Dias(2);
-        dias[2] = new Dias(3);
-        dias[3] = new Dias(4);
-        dias[4] = new Dias(5);
-        dias[5] = new Dias(7);
-        dias[6] = new Dias(8);
-        dias[7] = new Dias(9);
-        dias[8] = new Dias(10);
-        dias[9] = new Dias(11);
-        dias[10] = new Dias(12);
-        dias[11] = new Dias(14);
-        dias[12] = new Dias(15);
-        dias[13] = new Dias(16);
-        dias[14] = new Dias(17);
-        dias[15] = new Dias(18);
-        dias[16] = new Dias(19);
-        dias[17] = new Dias(21);
-        dias[18] = new Dias(22);
-        dias[19] = new Dias(23);
-        dias[20] = new Dias(24);
-        dias[21] = new Dias(25);
-        dias[22] = new Dias(26);
-        dias[23] = new Dias(28);
-        dias[24] = new Dias(29);
-        dias[25] = new Dias(30);
+        int n = 0;
 
+
+        for (int i = 0; i < 30; i++) {
+            dias[i] = new Dias((i + 1));
+        }
 
         if (dia == 6 || dia == 13 || dia == 20 || dia == 27) {
-            return 0;
+            n = 0;
+        } else {
+            n = dia;
         }
 
-        for (int i = 0; i < consultorios.length; i++) {
-            consultorios[i].getDoctor().setDias(dias);
-        }
-        return 0;
-
-        /*
-        if (dia >= 1 && dia <= 30) {
-            for (int i = 0; i < dias.length; i++) {
-                if (dia == consultorios[i].getDoctor().setDias(dias) {
-
-                    consultorios[i].getDoctor();
-                    return dia;
-                }
-            }
-
-            return dia;
-        }
-        return 0;
-        *
-         */
+        return n;
     }
 
 
     public static void imprimir() {
-        dias();
-
-        consultorios[0].getDoctor().setDias(dias);
-        consultorios[1].getDoctor().setDias(dias);
-        consultorios[2].getDoctor().setDias(dias);
-
 
         System.out.println("-----Doctores-----");
         for (int i = 0; i < consultorios.length; i++) {
             consultorios[i].imprimir();
             System.out.println(consultorios[i].getDoctor());
-            for (int j = 0; j < dias.length; j++) {
-                System.out.println(consultorios[i].getDoctor().getDias()[j].toString());
-            }
 
             System.out.println("-----------");
         }
 
-
-
-        /*
-        for (int i = 0; i < dias.length; i++) {
-            System.out.println(dias[i].getDia());
-        }
-
-         */
     }
 
-
-    public static void horarios() {
-        System.out.println("1.- 8:00");
-        System.out.println("2.- 8:30");
-        System.out.println("3.- 9:00");
-        System.out.println("4.- 9:30");
-        System.out.println("5.- 10:00");
-        System.out.println("6.- 10:30");
-        System.out.println("7.- 11:00");
-        System.out.println("8.- 11:30");
-        System.out.println("9.- 12:00");
-        System.out.println("10.- 12:30");
-        System.out.println("11.- 13:00");
-        System.out.println("12.- 13:30");
-    }
-
-    /*
-    public static int diasMesJunio(int dat) {
-        if (dat == 1 || dat == 2 || dat == 3 || dat == 4 || dat == 5 || dat == 7 || dat == 8 ||
-                dat == 9 || dat == 10 || dat == 11 || dat == 12 || dat == 14 || dat == 15 || dat == 16 ||
-                dat == 17 || dat == 18 || dat == 19 || dat == 21 || dat == 22 || dat == 23 || dat == 24 ||
-                dat == 25 || dat == 26 || dat == 28 || dat == 29 || dat == 30) {
-            return dat;
-        } else {
-            return 0; // Si retorna 0 significa que ese dia es domingo y no se labora
+    public static void horarios(int pC) {
+        System.out.println(" -------------- HORARIOS DISPONIBLES -------------");
+        for (int i = 0; i < 12; i++) {
+            if (consultorios[pC].estaVacia()) {
+                System.out.println((i + 1) + ".- " + consultorios[pC].getHorarios(i));
+            } else {
+                if (consultorios[pC].cabeza.nPrio != i) {
+                    System.out.println((i + 1) + ".- " + consultorios[pC].getHorarios(i));
+                }
+            }
         }
     }
-
-     */
-
 }

@@ -1,3 +1,4 @@
+
 package ColaDePrioridad;
 
 public class Cita {
@@ -13,7 +14,7 @@ public class Cita {
     public Cita() {
     }
 
-    public Cita(String nombrePaciente, int fecha, int año, int mes) {
+    public Cita(String nombrePaciente, int fecha, int mes, int año) {
         this.contadorDeDias = 0;
         this.nombrePaciente = nombrePaciente;
         this.fecha = fecha;

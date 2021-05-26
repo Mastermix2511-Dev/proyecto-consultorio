@@ -2,7 +2,8 @@ package ColaDePrioridad;
 
 
 public class Consultorio {
-    Nodo cabeza = null;
+    String[] horarios;
+    public Nodo cabeza = null;
     Nodo cola = null;
     Doctor doctor;
 
@@ -12,11 +13,28 @@ public class Consultorio {
 
     public Consultorio(Doctor doctor) {
         this.doctor = doctor;
+        horarios = new String[12];
+        horarios[0] = "8:00";
+        horarios[1] = "8:30";
+        horarios[2] = "9:00";
+        horarios[3] = "9:30";
+        horarios[4] = "10:00";
+        horarios[5] = "10:30";
+        horarios[6] = "11:00";
+        horarios[7] = "11:30";
+        horarios[8] = "12:00";
+        horarios[9] = "12:30";
+        horarios[10] = "13:00";
+        horarios[11] = "13:30";
     }
 
 
     public Doctor getDoctor() {
         return doctor;
+    }
+
+    public String getHorarios(int i) {
+        return horarios[i];
     }
 
     public void setDoctor(Doctor doctor) {
@@ -30,27 +48,104 @@ public class Consultorio {
             return false;
         }
     }
+    /*public void buscaPrioridad(int n){
+        Nodo aux=cabeza;
+        Nodo auxi = null;
+        if(aux.prioD>n)
+    }*/
 
-
-    public void insertarCita(Cita cita, int nPrm) {// hora
-        Nodo nuevoNodo = new Nodo(cita, nPrm);
+    public void insertarCita(Cita cita, int diaP, int nPrm) {// hora
+        Nodo nuevoNodo = new Nodo(cita, diaP, nPrm);
         if (estaVacia()) {
+            System.out.println("ESTA VACIA");
             cabeza = nuevoNodo;
             cola = nuevoNodo;
-        } else if (cabeza.nPrio > nPrm) {
-            nuevoNodo.siguiente = cabeza;
-            cabeza = nuevoNodo;
         } else {
-            Nodo aux = null;
-            Nodo route = cabeza;
-            while (route != null && route.nPrio <= nPrm) {
-                aux = route;
-                route = route.siguiente;
-            }
-            nuevoNodo.siguiente = route;
-            aux.siguiente = nuevoNodo;
-            if (route == null) {
-                cola = nuevoNodo;
+            if (cabeza.prioD > diaP) {
+                System.out.println("LA PRIORIDAD DE CABEZA ES MAYOR");
+                if (cabeza.nPrio > nPrm) {
+                    System.out.println("LA PRIORIDAD DE CABEZA EN DIA Y HORA ES MAYOR");
+                    nuevoNodo.siguiente = cabeza;
+                    cabeza = nuevoNodo;
+                } else {
+                    System.out.println("LA HORA DE CABEZA ES MENOR");
+                    Nodo aux = null;
+                    Nodo route = cabeza;
+                    while (route != cola) {
+                        if (route.nPrio <= nPrm) {
+                            aux = route;
+                            break;
+                        }
+                        route = route.siguiente;
+                    }
+                    if (route == cola) {
+                        cola = nuevoNodo;
+                    } else {
+                        nuevoNodo.siguiente = route;
+                        aux.siguiente = nuevoNodo;
+                    }
+
+                }
+            } else {
+                System.out.println("LA PRIORIDAD DIA DE CABEZA ES MENOR O IGUAL");
+//si la prioridad Dia de cabeza no es mayor busca su lugar en el día y luego en la hora.
+                Nodo aux = null;
+                Nodo route = cabeza;
+                Nodo route2 = cabeza;
+                while (route != cola && route.prioD <= diaP) {
+                    System.out.println("BUSCANDO SU LUGAR");
+                    if (cabeza.nPrio > nPrm) {
+                        System.out.println("LA PRIORIDAD DE HORA EN CABEZA ES MAYOR");
+                        nuevoNodo.siguiente = cabeza;
+                        cabeza = nuevoNodo;
+                    } else {//en caso de que no sea mayor pues busca a donde pertecene
+                        System.out.println("LA PRIORIDAD DE HORA EN CABEZA ES MENOR O IGUAL ");
+                        aux = null;
+                        route2 = cabeza;
+                        while (route2 != cola) {
+                            if (route2.nPrio <= nPrm) {
+                                System.out.println("BUSCANDO SU LUGAR.... nPrio");
+                                aux = route2;
+                                break;
+                            }
+                            route2 = route2.siguiente;
+                        }
+                        if (route2 == cola) {
+                            cola = nuevoNodo;
+                        } else {
+                            nuevoNodo.siguiente = route2;
+                            aux.siguiente = nuevoNodo;
+                        }
+                    }
+                    route = route.siguiente;
+                }
+                if (route == cola) {
+                    if (cabeza.nPrio > nPrm) {
+                        System.out.println("LA PRIORIDAD DE HORA EN CABEZA ES MAYOR");
+                        nuevoNodo.siguiente = cabeza;
+                        cabeza = nuevoNodo;
+                    } else {//en caso de que no sea mayor pues busca a donde pertecene
+                        System.out.println("LA PRIORIDAD DE HORA EN CABEZA ES MENOR O IGUAL ");
+                        aux = null;
+                        route2 = cabeza;
+                        while (route2 != cola) {
+                            if (route2.nPrio <= nPrm) {
+                                System.out.println("BUSCANDO SU LUGAR.... nPrio");
+                                aux = route2;
+                                break;
+                            }
+                            route2 = route2.siguiente;
+                        }
+                        if (route2 == cola) {
+                            cola = nuevoNodo;
+                        } else {
+                            nuevoNodo.siguiente = route2;
+                            aux.siguiente = nuevoNodo;
+                        }
+                    }
+
+                }
+
             }
         }
     }
@@ -96,7 +191,6 @@ public class Consultorio {
             }
         }
     }
-
      */
 
       /*
@@ -122,7 +216,6 @@ public class Consultorio {
             }
         }
     }
-
      */
 
     public void imprimir() {
@@ -130,11 +223,11 @@ public class Consultorio {
         if (route == null) {
 
         } else {
-            while (route != null) {
+            while (route != cola) {
                 System.out.println("->" + route.toString());
                 route = route.siguiente;
             }
-            System.out.println();
+            System.out.println("->" + route.toString());
         }
     }
 }
